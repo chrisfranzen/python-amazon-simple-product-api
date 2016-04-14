@@ -686,6 +686,28 @@ class AmazonProduct(LXMLWrapper):
             return None, None
 
     @property
+    def product_availibility(self):
+        """Get Offer Availibility of Offer.
+
+        Return availibility according to the following process:
+
+        * If product has a string about the offer availibility.
+        * Return None.
+
+        :return:
+            A tuple containing:
+
+                1. Float representation of price.
+                2. ISO Currency code (string).
+        """
+        availibility = self._safe_get_element_text(
+            'Offers.Offer.OfferListing.Availability')
+        if availibility:
+            return self._safe_get_element_text('Offers.Offer.OfferListing.Availability')
+        else:
+            return None
+            
+    @property
     def asin(self):
         """ASIN (Amazon ID)
 
