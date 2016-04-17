@@ -681,6 +681,7 @@ class AmazonProduct(LXMLWrapper):
         if price == None:
             price = self._safe_get_element_text('ItemAttributes.ListPrice.Amount')
             currency = self._safe_get_element_text('ItemAttributes.ListPrice.CurrencyCode')
+
         if price:
             fprice = float(price) / 100 if 'JP' not in self.region else price
             fprice = '{:,.2f}'.format(fprice)
@@ -709,7 +710,7 @@ class AmazonProduct(LXMLWrapper):
             return self._safe_get_element_text('Offers.Offer.OfferListing.Availability')
         else:
             return None
-            
+
     @property
     def asin(self):
         """ASIN (Amazon ID)
